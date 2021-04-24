@@ -5,6 +5,7 @@ using UnityEngine;
 public class Configurables : MonoBehaviour {
 
     public float fMaxVal;
+    public float fMaxVelocity;
     public float fVelocityIncrement; //How much pressing a key accelerates the velocity
     public float[] arfValIncrements; //How much different level disturbances influence the value
 

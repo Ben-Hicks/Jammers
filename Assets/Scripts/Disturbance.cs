@@ -5,7 +5,8 @@ using UnityEngine;
 public class Disturbance : MonoBehaviour {
 
     //Set by prefab
-    public int nIntensity; //positive or negative number representing the impact of the disturbance
+    public bool bPosNeg; //true if the impact would increase the value
+    public int nIntensity; //positive number representing the impact of the disturbance
     public int nMeter; //Which meter this disturbance will affect (1, 2, or 3)
 
 

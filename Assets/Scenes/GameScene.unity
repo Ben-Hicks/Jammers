@@ -331,6 +331,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7989495747570337911, guid: a96d6d3a83f496e45b65465b94319df5, type: 3}
+      propertyPath: keyAccel
+      value: 101
+      objectReference: {fileID: 0}
+    - target: {fileID: 7989495747570337911, guid: a96d6d3a83f496e45b65465b94319df5, type: 3}
+      propertyPath: keyDeccel
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 8467702297946250069, guid: a96d6d3a83f496e45b65465b94319df5, type: 3}
       propertyPath: m_Name
       value: pfMeter3
@@ -383,10 +391,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48893c07867dad848b6ee7f35a9bbc1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fMaxVal: 0
-  fVelocityIncrement: 0
-  arfValIncrements: []
-  fZeroingRate: 0
+  fMaxVal: 100
+  fMaxVelocity: 10
+  fVelocityIncrement: 1
+  arfValIncrements:
+  - 2
+  - 4
+  - 8
+  - 16
+  fZeroingRate: 0.99
   fZeroingDelay: 0
 --- !u!114 &519426016
 MonoBehaviour:
@@ -639,6 +652,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7989495747570337911, guid: a96d6d3a83f496e45b65465b94319df5, type: 3}
+      propertyPath: keyAccel
+      value: 119
+      objectReference: {fileID: 0}
+    - target: {fileID: 7989495747570337911, guid: a96d6d3a83f496e45b65465b94319df5, type: 3}
+      propertyPath: keyDeccel
+      value: 115
+      objectReference: {fileID: 0}
     - target: {fileID: 8467702297946250069, guid: a96d6d3a83f496e45b65465b94319df5, type: 3}
       propertyPath: m_Name
       value: pfMeter2
@@ -711,6 +732,14 @@ PrefabInstance:
     - target: {fileID: 3633087899125098012, guid: a96d6d3a83f496e45b65465b94319df5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7989495747570337911, guid: a96d6d3a83f496e45b65465b94319df5, type: 3}
+      propertyPath: keyAccel
+      value: 113
+      objectReference: {fileID: 0}
+    - target: {fileID: 7989495747570337911, guid: a96d6d3a83f496e45b65465b94319df5, type: 3}
+      propertyPath: keyDeccel
+      value: 97
       objectReference: {fileID: 0}
     - target: {fileID: 8467702297946250069, guid: a96d6d3a83f496e45b65465b94319df5, type: 3}
       propertyPath: m_Name
