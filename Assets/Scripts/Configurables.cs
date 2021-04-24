@@ -16,6 +16,9 @@ public class Configurables : MonoBehaviour {
     public float fDisturbanceSpawnRate; //On average, how long it takes between disturbance spawns;
     public float fDisturbanceSpawnVariance; //The time window in which disturbances can randomly spawn away from the average rate
 
+    public float fTimeToReachCenterAverage;
+    public float fTimeToReachCenterVariance;
+
 
     public static Configurables inst;
 

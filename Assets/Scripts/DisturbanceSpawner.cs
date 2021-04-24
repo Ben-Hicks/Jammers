@@ -6,54 +6,60 @@ public class DisturbanceSpawner : MonoBehaviour {
 
     public static DisturbanceSpawner inst; // A 'singleton' reference to the disturbance spawner
 
-    //Configure with prefabs for spawning
-    public GameObject[] lstDisturbancePrefabs1; //Difficulty 1 prefabs
-    public GameObject[] lstDisturbancePrefabs2; //Difficulty 2 prefabs
-    public GameObject[] lstDisturbancePrefabs3; //Difficulty 3 prefabs
-    public GameObject[] lstDisturbancePrefabs4; //Difficulty 4 prefabs
+    public GameObject pfDisturbance;
 
     //Internal Use
     public List<Disturbance> lstDisturbances;
     public float fTimeUntilNewSpawn;
 
     public Vector3 GetRandomStartingPoint() {
-        Vector3 v3Random = new Vector3(Random.Range(-1, 1), Random.Range(-1, 1), 0);
+        Vector3 v3Random = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0);
+        if (v3Random == Vector3.zero) v3Random = new Vector3(0, 1, 0);
         v3Random = v3Random.normalized * Configurables.inst.fDisturbanceSpawnDist;
 
         return v3Random;
     }
+    
+    public void InitNewDisturbance(Disturbance disturbance) {
 
-    public GameObject GetRandomPrefabOfDifficulty(int nDifficulty) {
+        int nDifficulty = GameManager.inst.nDifficulty;
 
-        GameObject goDisturbancePrefab = null;
+        bool bPosNeg = GetRandomPosNeg(nDifficulty);
+        int nIntensity = GetRandomIntensity(nDifficulty);
+        int nMeter = GetRandomMeter();
+        float fTimeToReachCenter = GetRandomTimeToReachCenter(nDifficulty);
 
-        switch (nDifficulty) {
-            case 1:
-                goDisturbancePrefab = lstDisturbancePrefabs1[Random.Range(0, lstDisturbancePrefabs1.Length)];
-                break;
-            case 2:
-                goDisturbancePrefab = lstDisturbancePrefabs1[Random.Range(0, lstDisturbancePrefabs1.Length)];
-                break;
-            case 3:
-                goDisturbancePrefab = lstDisturbancePrefabs1[Random.Range(0, lstDisturbancePrefabs1.Length)];
-                break;
-            case 4:
-                goDisturbancePrefab = lstDisturbancePrefabs1[Random.Range(0, lstDisturbancePrefabs1.Length)];
-                break;
-        }
+        disturbance.Init(bPosNeg, nIntensity, nMeter, fTimeToReachCenter);
+    }
 
-        return goDisturbancePrefab;
+    public bool GetRandomPosNeg(int nDifficulty) {
+        return Random.Range(0, 100) <= 50 ? true : false;
+    }
+
+    public int GetRandomIntensity(int nDifficulty) {
+        return Random.Range(1, 6);
+    }
+
+    public int GetRandomMeter() {
+        return Random.Range(1, 4);
+    }
+
+    public float GetRandomTimeToReachCenter(int nDifficulty) {
+        return Configurables.inst.fTimeToReachCenterAverage + Random.Range(-Configurables.inst.fTimeToReachCenterVariance, Configurables.inst.fTimeToReachCenterVariance);
     }
 
     public void SpawnDisturbance (int nDifficulty){
         //Spawn an appropriate random disturbance of given difficulty
 
-        GameObject goDisturbanceToSpawn = GetRandomPrefabOfDifficulty(nDifficulty);
         Vector3 v3PositionToSpawnAt = GetRandomStartingPoint();
 
-        GameObject goNewlySpawned = GameObject.Instantiate(goDisturbanceToSpawn, v3PositionToSpawnAt, Quaternion.identity, this.transform);
+        GameObject goNewlySpawned = GameObject.Instantiate(pfDisturbance, this.transform);
+
+        goNewlySpawned.transform.localPosition = v3PositionToSpawnAt;
 
         Disturbance disturbance = goNewlySpawned.GetComponent<Disturbance>();
+
+        InitNewDisturbance(disturbance);
 
         AddDisturbanceToCollection(disturbance);
     }
