@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Meter : MonoBehaviour {
 
@@ -13,16 +14,16 @@ public class Meter : MonoBehaviour {
     //Configuration - Set and Forget
     public KeyCode keyAccel;
     public KeyCode keyDeccel;
-    public GameObject goSliderHandle;
-    public GameObject goPositionTop;
-    public GameObject goPositionBot;
+
+    public const float fRectFillWidth = 0.6f;
+    public const float fMaxRectFillSacle = 2.5f;
+    public RectTransform rectFill;
     
 
-    public void PositionSliderHandle() {
+    public void SetFullness() {
         //Position the handle in the appropriate range for fCurVal in {-fMaxVal, +fMaxVal}
-
-        Vector3 v3NewPosition = Vector3.Lerp(goPositionBot.transform.localPosition, goPositionTop.transform.localPosition, fPercentageVal);
-        goSliderHandle.transform.localPosition = v3NewPosition;
+        
+        rectFill.sizeDelta = new Vector2(fRectFillWidth, Mathf.Lerp(0, fMaxRectFillSacle, fPercentageVal));
     }
 
     public void ChangeVelocity(float fDeltaVelocity) {
@@ -52,7 +53,7 @@ public class Meter : MonoBehaviour {
             bGameOver = true;
         }
 
-        PositionSliderHandle();
+        SetFullness();
 
         if (bGameOver == true) GameManager.inst.OnGameOver();
     }
