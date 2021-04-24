@@ -12,7 +12,9 @@ public class Configurables : MonoBehaviour {
     public float fZeroingRate; //How fast the velocity returns to 0 when no keys are held (as a percentage multiplier in [0, 1]
     public float fZeroingDelay; //How much time must elapse where no keys are pressed before the velocity slows to 0
 
-
+    public float fDisturbanceSpawnDist; //How far away Disturbances spawn
+    public float fDisturbanceSpawnRate; //On average, how long it takes between disturbance spawns;
+    public float fDisturbanceSpawnVariance; //The time window in which disturbances can randomly spawn away from the average rate
 
 
     public static Configurables inst;
