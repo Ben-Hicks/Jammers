@@ -6,7 +6,11 @@ public class Score : MonoBehaviour {
 
     public static Score inst;
 
+    public Sprite[] arsprDigits;
+
     public SpriteRenderer sprrenMultiplier;
+
+    public DigitDisplay[] arScoreDigits;
 
     // internal use
     public float fMultiplier;
@@ -61,6 +65,13 @@ public class Score : MonoBehaviour {
     }
 
     public void UpdateScoreGraphics() {
+
+        int nScoreToRender = Mathf.FloorToInt(fScore);
+
+        for(int i=0; i<arScoreDigits.Length; i++) {
+            arScoreDigits[i].DisplayDigit(nScoreToRender % 10);
+            nScoreToRender /= 10;
+        }
 
     }
 

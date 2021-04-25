@@ -102,7 +102,7 @@ public class Meter : MonoBehaviour {
             fTimeSinceLastInput += Time.deltaTime;
             
             if(fTimeSinceLastInput >= Configurables.inst.fZeroingDelay) {
-                Debug.Log("Decaying Velocity");
+
                 DecayVelocity(Configurables.inst.fZeroingRate);
             }
         }
@@ -117,7 +117,7 @@ public class Meter : MonoBehaviour {
             fImpact *= -1;
         }
 
-        ChangeVal(fImpact);
+        ChangeVelocity(fImpact);
     }
 
     public bool IsSweetspot() {
