@@ -11,6 +11,8 @@ public class Meter : MonoBehaviour {
     public float fTimeSinceLastInput;
     public float fPercentageVal; //An easier to interpret scale for where the slider should appear
 
+    public float fTimeInExtreme;
+
     //Configuration - Set and Forget
     public KeyCode keyAccel;
     public KeyCode keyDeccel;
@@ -35,27 +37,43 @@ public class Meter : MonoBehaviour {
         fCurVelocity *= fDecayMultiplier;
     }
 
+    public void CheckHittingExtremes() {
+        
+        bool bHitExtreme = false;
+        if (fCurVal <= -Configurables.inst.fMaxVal) {
+            fCurVal = -Configurables.inst.fMaxVal;
+            bHitExtreme = true;
+        } else if (fCurVal >= Configurables.inst.fMaxVal) {
+            fCurVal = Configurables.inst.fMaxVal;
+            bHitExtreme = true;
+        }
+
+        if (bHitExtreme) {
+            if (fTimeInExtreme == 0f || fTimeInExtreme >= Configurables.inst.fComboJerkDelay) {
+                Debug.Log("Hit Extreme");
+                Score.inst.HitExtreme();
+
+                fTimeInExtreme = 0f; //reset to 0 in case we've just been chilling in the extremes for a while to penalize again
+            }
+
+            fTimeInExtreme += Time.deltaTime;
+
+        } else {
+            fTimeInExtreme = 0f;
+        }
+    }
+
     public void ChangeVal(float fDeltaVal) {
         //Modify curVal by deltaVal
         fCurVal += fDeltaVal;
 
+        //Check if reaching one of the extremes
+        CheckHittingExtremes();
+
         fPercentageVal = (fCurVal + Configurables.inst.fMaxVal) / (2 * Configurables.inst.fMaxVal);
 
-        bool bGameOver = false;
-
-        if(fPercentageVal <= 0) {
-            fPercentageVal = 0;
-            Debug.Log("Reached 0!");
-            bGameOver = true;
-        }else if(fPercentageVal >= 1) {
-            fPercentageVal = 1;
-            Debug.Log("Reached 1!");
-            bGameOver = true;
-        }
-
         SetFullness();
-
-        if (bGameOver == true) GameManager.inst.OnGameOver();
+        
     }
 
     public void UpdateValFromVelocity() {
@@ -102,6 +120,10 @@ public class Meter : MonoBehaviour {
         ChangeVal(fImpact);
     }
 
+    public bool IsSweetspot() {
+        return Mathf.Abs(fPercentageVal - 0.5f) <= Configurables.inst.fSweetspotWidth;
+    }
+    
     // Start is called before the first frame update
     void Start() {
 
