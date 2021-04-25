@@ -19,6 +19,13 @@ public class Configurables : MonoBehaviour {
     public float fTimeToReachCenterAverage;
     public float fTimeToReachCenterVariance;
 
+    public float fSweetspotWidth;
+    public float fPassiveComboDrain;
+    public float fSweetspotComboIncrease;
+    public float fComboJerkPenalty;
+    public float fComboJerkDelay;
+    public float fPassiveScoreIncrease;
+
 
     public static Configurables inst;
 
