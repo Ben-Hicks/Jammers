@@ -8,14 +8,52 @@ public class DisturbanceSpawner : MonoBehaviour {
 
     public GameObject pfDisturbance;
 
+    public GameObject goPosTop;
+    public GameObject goPosLeft;
+    public GameObject goPosRight;
+    public GameObject goPosBot;
+
+    public SpriteRenderer sprrenExpression;
+    public Sprite[] arsprExpressions;
+
     //Internal Use
     public List<Disturbance> lstDisturbances;
     public float fTimeUntilNewSpawn;
+    public float fTimeToRecoverFromJerk;
 
     public Vector3 GetRandomStartingPoint() {
-        Vector3 v3Random = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0);
-        if (v3Random == Vector3.zero) v3Random = new Vector3(0, 1, 0);
-        v3Random = v3Random.normalized * Configurables.inst.fDisturbanceSpawnDist;
+
+        int nSpawnOnSide = Random.Range(0, 4); //0 top, 1 right, 2 bot, 3 left
+
+        float fRandomX = Random.Range(goPosLeft.transform.localPosition.x, goPosRight.transform.localPosition.x);
+        float fRandomY = Random.Range(goPosBot.transform.localPosition.y, goPosTop.transform.localPosition.y);
+
+        float fX = 0f;
+        float fY = 0f;
+
+        switch (nSpawnOnSide) {
+            case 0: //top
+                fX = fRandomX;
+                fY = goPosTop.transform.localPosition.y;
+                break;
+
+            case 1: //right
+                fX = goPosRight.transform.localPosition.x;
+                fY = fRandomY;
+                break;
+
+            case 2: //bot
+                fX = fRandomX;
+                fY = goPosBot.transform.localPosition.y;
+                break;
+
+            case 3: //left
+                fX = goPosLeft.transform.localPosition.x;
+                fY = fRandomY;
+                break;
+        }
+
+        Vector3 v3Random = new Vector3(fX, fY, 0f);
 
         return v3Random;
     }
@@ -80,6 +118,38 @@ public class DisturbanceSpawner : MonoBehaviour {
         lstDisturbances.Remove(disturbance);
     }
 
+    public void SetJerkExpression() {
+
+        SetExpression(0);
+
+        fTimeToRecoverFromJerk = Configurables.inst.fTimeJerkExpression;
+    }
+
+    public void SetExpression(int iExpression) {
+
+        //Don't overwrite the jerking expression with other normal ones
+        if (iExpression != 0 && fTimeToRecoverFromJerk > 0f) return;
+
+        sprrenExpression.sprite = arsprExpressions[iExpression];
+
+    }
+
+    public void SetExpressionToAppropriate() {
+        SetExpression(Mathf.FloorToInt(Score.inst.fMultiplier));
+    }
+
+    public void UpdateExpression() {
+
+        //If we need to recover, reduce the timer appropriately
+        if (fTimeToRecoverFromJerk > 0f) {
+            fTimeToRecoverFromJerk -= Time.deltaTime;
+        } else if(fTimeToRecoverFromJerk < 0f) { 
+            fTimeToRecoverFromJerk = 0f;
+            //Set the expression as appropriate after recovering from a jerk
+            SetExpressionToAppropriate();
+        }
+
+    }
 
     public void Awake() {
         inst = this;
@@ -88,6 +158,8 @@ public class DisturbanceSpawner : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         lstDisturbances = new List<Disturbance>();
+
+        SetExpressionToAppropriate();
     }
 
     // Update is called once per frame
@@ -100,6 +172,8 @@ public class DisturbanceSpawner : MonoBehaviour {
 
             SetNewDisturbanceSpawnTime();
         }
+
+        UpdateExpression();
 
     }
 }

@@ -50,6 +50,7 @@ public class Score : MonoBehaviour {
         }
 
         SyncWaves.inst.OnMultiplierChange(Mathf.FloorToInt(fMultiplier));
+        DisturbanceSpawner.inst.SetExpression(Mathf.FloorToInt(fMultiplier));
 
         UpdateMultiplierGraphics();
     }
