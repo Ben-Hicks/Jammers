@@ -26,6 +26,7 @@ public class Configurables : MonoBehaviour {
     public float fComboJerkDelay;
     public float fPassiveScoreIncrease;
 
+    public float fTimeLimitSeconds;
 
     public static Configurables inst;
 
