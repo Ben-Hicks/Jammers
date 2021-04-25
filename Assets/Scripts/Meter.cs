@@ -50,8 +50,8 @@ public class Meter : MonoBehaviour {
 
         if (bHitExtreme) {
             if (fTimeInExtreme == 0f || fTimeInExtreme >= Configurables.inst.fComboJerkDelay) {
-                Debug.Log("Hit Extreme");
                 Score.inst.HitExtreme();
+                DisturbanceSpawner.inst.SetJerkExpression();
 
                 fTimeInExtreme = 0f; //reset to 0 in case we've just been chilling in the extremes for a while to penalize again
             }
@@ -118,6 +118,7 @@ public class Meter : MonoBehaviour {
         }
 
         ChangeVelocity(fImpact);
+
     }
 
     public bool IsSweetspot() {
