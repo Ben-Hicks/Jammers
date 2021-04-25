@@ -44,3 +44,6 @@ TagManager:
   - name: Disturbances
     uniqueID: 4231024455
     locked: 0
+  - name: MessagePanels
+    uniqueID: 4032075567
+    locked: 0

@@ -159,6 +159,8 @@ public class DisturbanceSpawner : MonoBehaviour {
     void Start() {
         lstDisturbances = new List<Disturbance>();
 
+        fTimeUntilNewSpawn = Configurables.inst.fDisturbanceSpawnInitialDelay;
+
         SetExpressionToAppropriate();
     }
 

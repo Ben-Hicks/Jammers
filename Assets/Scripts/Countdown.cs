@@ -13,6 +13,8 @@ public class Countdown : MonoBehaviour {
     public DigitDisplay digitMiliSec10;
     public DigitDisplay digitMiliSec1;
 
+    public static Countdown inst;
+
     public void StartTimer() {
         fTimeLeft = Configurables.inst.fTimeLimitSeconds;
         bTimeStarted = true;
@@ -48,9 +50,13 @@ public class Countdown : MonoBehaviour {
 
     }
 
+    public void Awake() {
+        inst = this;
+    }
+
     // Start is called before the first frame update
     void Start() {
-        StartTimer();
+        
     }
 
     // Update is called once per frame
