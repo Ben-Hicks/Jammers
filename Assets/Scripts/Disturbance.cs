@@ -107,10 +107,19 @@ public class Disturbance : MonoBehaviour {
         GameObject.Destroy(this.gameObject);
     }
 
+    public void SetRandomBackgroundRotation() {
+        //Taken from
+        //https://answers.unity.com/questions/790877/random-rotation-in-z-axis.html
+        Vector3 euler = sprrenBackground.transform.localEulerAngles;
+        euler.z = Random.Range(0f, 360f);
+        sprrenBackground.transform.localEulerAngles = euler;
+    }
+
     // Start is called before the first frame update
     void Start() {
         v3InitialPosition = this.transform.localPosition;
 
+        SetRandomBackgroundRotation();
     }
 
     // Update is called once per frame
