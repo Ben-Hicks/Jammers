@@ -28,6 +28,11 @@ public class Configurables : MonoBehaviour {
 
     public float fTimeLimitSeconds;
 
+    public float fSyncVelocity;
+    public float fResyncVelocity;
+
+    public float[] arfSyncGaps;
+
     public static Configurables inst;
 
 
