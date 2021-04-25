@@ -49,6 +49,8 @@ public class Score : MonoBehaviour {
             fMultiplier = 4f;
         }
 
+        SyncWaves.inst.OnMultiplierChange(Mathf.FloorToInt(fMultiplier));
+
         UpdateMultiplierGraphics();
     }
 
