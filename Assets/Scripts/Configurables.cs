@@ -11,6 +11,7 @@ public class Configurables : MonoBehaviour {
 
     public float fZeroingRate; //How fast the velocity returns to 0 when no keys are held (as a percentage multiplier in [0, 1]
     public float fZeroingDelay; //How much time must elapse where no keys are pressed before the velocity slows to 0
+    public float fZeroingFrequency; //Time between zeroing friction applications
 
     public float fDisturbanceSpawnInitialDelay;
     public float fDisturbanceSpawnRate; //On average, how long it takes between disturbance spawns;
@@ -34,6 +35,9 @@ public class Configurables : MonoBehaviour {
     public float[] arfSyncGaps;
 
     public float fTimeJerkExpression;
+    public float fMaxDisturbanceSpin;
+    public float fMinDisturbanceSpin;
+    public float fDisturbanceSpinRatio;
 
     public static Configurables inst;
 

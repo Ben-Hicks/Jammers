@@ -17,7 +17,6 @@ public class DisturbanceSpawner : MonoBehaviour {
     public Sprite[] arsprExpressions;
 
     //Internal Use
-    public List<Disturbance> lstDisturbances;
     public float fTimeUntilNewSpawn;
     public float fTimeToRecoverFromJerk;
 
@@ -98,24 +97,10 @@ public class DisturbanceSpawner : MonoBehaviour {
         Disturbance disturbance = goNewlySpawned.GetComponent<Disturbance>();
 
         InitNewDisturbance(disturbance);
-
-        AddDisturbanceToCollection(disturbance);
     }
 
     public void SetNewDisturbanceSpawnTime() {
         fTimeUntilNewSpawn = Configurables.inst.fDisturbanceSpawnRate + Random.Range(-Configurables.inst.fDisturbanceSpawnVariance, Configurables.inst.fDisturbanceSpawnVariance);
-    }
-
-    public void AddDisturbanceToCollection(Disturbance disturbance) {
-        //Ensure this disturbance is tracked in the list of all disturbances
-
-        lstDisturbances.Add(disturbance);
-    }
-
-    public void RemoveDisturbanceFromCollection(Disturbance disturbance) {
-        //Remove this disturbance from the tracked collection of all disturbances
-
-        lstDisturbances.Remove(disturbance);
     }
 
     public void SetJerkExpression() {
@@ -130,7 +115,9 @@ public class DisturbanceSpawner : MonoBehaviour {
         //Don't overwrite the jerking expression with other normal ones
         if (iExpression != 0 && fTimeToRecoverFromJerk > 0f) return;
 
-        sprrenExpression.sprite = arsprExpressions[iExpression];
+        if (sprrenExpression.sprite != arsprExpressions[iExpression]) {
+            sprrenExpression.sprite = arsprExpressions[iExpression];
+        }
 
     }
 
@@ -157,7 +144,6 @@ public class DisturbanceSpawner : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
-        lstDisturbances = new List<Disturbance>();
 
         fTimeUntilNewSpawn = Configurables.inst.fDisturbanceSpawnInitialDelay;
 

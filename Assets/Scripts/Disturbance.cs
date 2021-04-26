@@ -12,19 +12,23 @@ public class Disturbance : MonoBehaviour {
 
     //Hookups in the prefab for graphics
     public SpriteRenderer sprrenBackground;
+    public SpriteRenderer sprrenShadow;
     public SpriteRenderer sprrenNumber;
 
     //Internal use
     public float fTimeAlive; //How long the disturbance has been spawned
     public float fProgressToCenter; //a [0,1] percentage of the progress
     public Vector3 v3InitialPosition; //The initial position where this was spawned
-
+    public float fRotationSpeed;
 
     public void Init(bool _bPosNeg, int _nIntensity, int _nMeter, float _fTimeToReachCenter) {
         bPosNeg = _bPosNeg;
         nIntensity = _nIntensity;
         nMeter = _nMeter;
         fTimeToReachCenter = _fTimeToReachCenter;
+
+        fRotationSpeed = Random.Range(Configurables.inst.fMinDisturbanceSpin, Configurables.inst.fMaxDisturbanceSpin);
+        if (Random.Range(0, 100) < 50) fRotationSpeed *= -1;
 
         SetIntensityGraphic();
         SetBackgroundGraphic();
@@ -80,6 +84,7 @@ public class Disturbance : MonoBehaviour {
         Debug.Assert(sprBackground != null, "Could not find specificed sprite: " + sSprPath);
 
         sprrenBackground.sprite = sprBackground;
+        sprrenShadow.sprite = sprBackground;
     }
 
     public void SetPosition() {
@@ -96,11 +101,18 @@ public class Disturbance : MonoBehaviour {
 
     }
 
+    public void RotateBackground() {
+        Vector3 euler = sprrenBackground.transform.localEulerAngles;
+        euler.z += fRotationSpeed * Time.deltaTime;
+        sprrenBackground.transform.localEulerAngles = euler;
+
+        euler = sprrenShadow.transform.localEulerAngles;
+        euler.z -= Configurables.inst.fDisturbanceSpinRatio * fRotationSpeed * Time.deltaTime;
+        sprrenShadow.transform.localEulerAngles = euler;
+    }
 
     public void OnCollision() {
         //What to do when this disturbance collides with the sleeper
-
-        DisturbanceSpawner.inst.RemoveDisturbanceFromCollection(this);
 
         Monitor.inst.arMeters[nMeter-1].OnDisturbanceCollision(this);
 
@@ -113,6 +125,10 @@ public class Disturbance : MonoBehaviour {
         Vector3 euler = sprrenBackground.transform.localEulerAngles;
         euler.z = Random.Range(0f, 360f);
         sprrenBackground.transform.localEulerAngles = euler;
+
+        euler = sprrenShadow.transform.localEulerAngles;
+        euler.z = Random.Range(0f, 360f);
+        sprrenShadow.transform.localEulerAngles = euler;
     }
 
     // Start is called before the first frame update
@@ -128,6 +144,8 @@ public class Disturbance : MonoBehaviour {
         fTimeAlive += Time.deltaTime;
 
         SetPosition();
+
+        RotateBackground();
 
     }
 }

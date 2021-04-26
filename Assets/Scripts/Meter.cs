@@ -10,6 +10,7 @@ public class Meter : MonoBehaviour {
     public float fCurVelocity;
     public float fTimeSinceLastInput;
     public float fPercentageVal; //An easier to interpret scale for where the slider should appear
+    public float fTimeSinceLastZeroing;
 
     public float fTimeInExtreme;
 
@@ -37,7 +38,13 @@ public class Meter : MonoBehaviour {
     }
     public void DecayVelocity(float fDecayMultiplier) {
         //Zero-out Velocity with a factor of fDecayMultiplier
-        fCurVelocity *= fDecayMultiplier;
+
+        fTimeSinceLastZeroing += Time.deltaTime;
+
+        if (fTimeSinceLastZeroing > Configurables.inst.fZeroingFrequency) {
+            fTimeSinceLastZeroing = 0f;
+            fCurVelocity *= fDecayMultiplier;
+        }
     }
 
     public void CheckHittingExtremes() {

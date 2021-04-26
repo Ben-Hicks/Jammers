@@ -6,11 +6,11 @@ public class Score : MonoBehaviour {
 
     public static Score inst;
 
-    public Sprite[] arsprDigits;
-
     public SpriteRenderer sprrenMultiplier;
 
     public DigitDisplay[] arScoreDigits;
+
+    public Sprite[] arsprMultipliers;
 
     // internal use
     public float fMultiplier;
@@ -22,7 +22,7 @@ public class Score : MonoBehaviour {
 
         if (fMultiplier < 1f) fMultiplier = 1f;
 
-        UpdateMultiplierGraphics();
+        UpdateMultiplierGraphics(Mathf.FloorToInt(fMultiplier));
     }
 
     public void IncreaseScore() {
@@ -48,23 +48,11 @@ public class Score : MonoBehaviour {
         }else if (fMultiplier > 4f) {
             fMultiplier = 4f;
         }
-
-        SyncWaves.inst.OnMultiplierChange(Mathf.FloorToInt(fMultiplier));
-        DisturbanceSpawner.inst.SetExpression(Mathf.FloorToInt(fMultiplier));
-
-        UpdateMultiplierGraphics();
     }
 
-    public void UpdateMultiplierGraphics() {
-        string sSprPath = "Sprites/Multipliers/SleepPatternx";
+    public void UpdateMultiplierGraphics(int nMultiplier) {
 
-        sSprPath += Mathf.FloorToInt(fMultiplier);
-
-        Sprite sprMultiplier = Resources.Load(sSprPath, typeof(Sprite)) as Sprite;
-
-        Debug.Assert(sprMultiplier != null, "Could not find specificed sprite: " + sSprPath);
-
-        sprrenMultiplier.sprite = sprMultiplier;
+        sprrenMultiplier.sprite = arsprMultipliers[nMultiplier - 1];
     }
 
     public void UpdateScoreGraphics() {

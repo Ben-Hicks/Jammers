@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class IntroPanel : MonoBehaviour {
 
+    public static readonly KeyCode[] arControls = { KeyCode.Q, KeyCode.A, KeyCode.W, KeyCode.S, KeyCode.E, KeyCode.D };
 
     public void LookForKeyInput() {
 
-        if (Input.anyKeyDown) {
-            GameManager.inst.OnStartGame();
-            
+        for (int i = 0; i < arControls.Length; i++) {
+            if (Input.GetKeyUp(arControls[i]) ) {
+                GameManager.inst.OnStartGame();
+
+            }
         }
 
     }
