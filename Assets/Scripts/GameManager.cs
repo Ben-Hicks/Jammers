@@ -12,6 +12,10 @@ public class GameManager : MonoBehaviour {
     public GameOverPanel gameoverpanel;
     
     public AudioSource audioSource;
+    public float fAudioLength;
+    public float fAudioFadeoutSpeed;
+
+    float fTimePlayingMusic;
 
     public static GameManager inst; //A 'singleton' reference to the GameManager
 
@@ -49,7 +53,16 @@ public class GameManager : MonoBehaviour {
 
     public void StartMusic() {
         audioSource.Play();
+    }
 
+    public void ManageMusicVolume() {
+
+        fTimePlayingMusic += Time.deltaTime;
+
+        if (fTimePlayingMusic >= fAudioLength) {
+            audioSource.volume -= fAudioFadeoutSpeed * Time.deltaTime;
+            if (audioSource.volume == 0f) audioSource.Stop();
+        }
     }
 
     public void CheckForRestart() {
@@ -71,5 +84,7 @@ public class GameManager : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         CheckForRestart();
+
+        if (audioSource.isPlaying) ManageMusicVolume();
     }
 }
