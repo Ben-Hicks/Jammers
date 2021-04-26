@@ -16,9 +16,11 @@ public class Configurables : MonoBehaviour {
     public float fDisturbanceSpawnInitialDelay;
     public float fDisturbanceSpawnRate; //On average, how long it takes between disturbance spawns;
     public float fDisturbanceSpawnVariance; //The time window in which disturbances can randomly spawn away from the average rate
+    public float fDisturbanceSpawnRateFromDifficulty;
 
     public float fTimeToReachCenterAverage;
     public float fTimeToReachCenterVariance;
+    public float fDisturbanceSpeedFromDifficulty;
 
     public float fSweetspotWidth;
     public float fPassiveComboDrain;

@@ -913,6 +913,7 @@ GameObject:
   - component: {fileID: 519426017}
   - component: {fileID: 519426016}
   - component: {fileID: 519426015}
+  - component: {fileID: 519426019}
   - component: {fileID: 519426018}
   m_Layer: 0
   m_Name: GameManager
@@ -948,9 +949,11 @@ MonoBehaviour:
   fZeroingFrequency: 0.001
   fDisturbanceSpawnInitialDelay: 1
   fDisturbanceSpawnRate: 2
-  fDisturbanceSpawnVariance: 1
+  fDisturbanceSpawnVariance: 0.5
+  fDisturbanceSpawnRateFromDifficulty: 0.4
   fTimeToReachCenterAverage: 2
-  fTimeToReachCenterVariance: 1
+  fTimeToReachCenterVariance: 0.5
+  fDisturbanceSpeedFromDifficulty: 0.4
   fSweetspotWidth: 0.04
   fPassiveComboDrain: 0.01
   fSweetspotComboIncrease: 0.05
@@ -981,7 +984,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa6d586df28955e468f90a757c874c86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nDifficulty: 1
+  nDifficulty: 0
   bPaused: 0
   intropanel: {fileID: 109704798}
   gameoverpanel: {fileID: 1024759139}
@@ -1101,6 +1104,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &519426019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519426014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59d82765f71bb4148af2ba37bdfecdf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arTimeDifficulties:
+  - {x: 40, y: 1}
+  - {x: 95, y: 2}
+  - {x: 18, y: 0}
+  - {x: 10000, y: 0}
 --- !u!1 &545057635
 GameObject:
   m_ObjectHideFlags: 0
