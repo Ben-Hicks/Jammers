@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour {
 
     public IntroPanel intropanel;
     public GameOverPanel gameoverpanel;
+    
+    public AudioSource audioSource;
 
     public static GameManager inst; //A 'singleton' reference to the GameManager
 
@@ -26,6 +28,7 @@ public class GameManager : MonoBehaviour {
         intropanel.gameObject.SetActive(false);
         UnPause();
         Countdown.inst.StartTimer();
+        StartMusic();
     }
 
     public void RestartGame() {
@@ -42,6 +45,11 @@ public class GameManager : MonoBehaviour {
         bPaused = false;
 
         Time.timeScale = 1f;
+    }
+
+    public void StartMusic() {
+        audioSource.Play();
+
     }
 
     public void CheckForRestart() {
