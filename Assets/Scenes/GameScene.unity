@@ -935,17 +935,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fMaxVal: 100
-  fMaxVelocity: 10
-  fVelocityIncrement: 1.5
+  fMaxVelocity: 10000
+  fVelocityIncrement: 350
   arfValIncrements:
   - 0
-  - 0.2
-  - 0.4
-  - 0.6
-  - 0.8
-  - 1
-  fZeroingRate: 0.99
-  fZeroingDelay: 0
+  - 80
+  - 160
+  - 200
+  - 240
+  - 360
+  fZeroingRate: 0.98
+  fZeroingDelay: 0.15
   fZeroingFrequency: 0.001
   fDisturbanceSpawnInitialDelay: 1
   fDisturbanceSpawnRate: 2
@@ -964,8 +964,8 @@ MonoBehaviour:
   fSyncVelocity: -1
   fResyncVelocity: 0.02
   arfSyncGaps:
-  - 0.5
-  - 0.3
+  - 0.7
+  - 0.4
   - 0.15
   - 0
   fTimeJerkExpression: 0.5
@@ -1119,7 +1119,7 @@ MonoBehaviour:
   arTimeDifficulties:
   - {x: 40, y: 1}
   - {x: 95, y: 2}
-  - {x: 18, y: 0}
+  - {x: 108, y: 0}
   - {x: 10000, y: 0}
 --- !u!1 &545057635
 GameObject:
