@@ -940,13 +940,13 @@ MonoBehaviour:
   arfValIncrements:
   - 0
   - 80
-  - 160
-  - 200
+  - 140
+  - 180
+  - 220
   - 240
-  - 360
-  fZeroingRate: 0.98
-  fZeroingDelay: 0.15
-  fZeroingFrequency: 0.001
+  fZeroingRate: 0.95
+  fZeroingDelay: 0.1
+  fZeroingFrequency: 0.01
   fDisturbanceSpawnInitialDelay: 1
   fDisturbanceSpawnRate: 2
   fDisturbanceSpawnVariance: 0.5
