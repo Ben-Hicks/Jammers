@@ -103,6 +103,7 @@ public class GameManager : MonoBehaviour {
         SyncWaves.inst.OnMultiplierChange(nMultiplier);
         DisturbanceSpawner.inst.SetExpression(nMultiplier);
         Score.inst.UpdateMultiplierGraphics(nMultiplier);
+
     }
 
     public void CheckForUpdatingGraphics() {

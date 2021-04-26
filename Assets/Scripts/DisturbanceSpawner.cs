@@ -57,9 +57,7 @@ public class DisturbanceSpawner : MonoBehaviour {
         return v3Random;
     }
     
-    public void InitNewDisturbance(Disturbance disturbance) {
-
-        int nDifficulty = GameManager.inst.nDifficulty;
+    public void InitNewDisturbance(Disturbance disturbance, int nDifficulty) {
 
         bool bPosNeg = GetRandomPosNeg(nDifficulty);
         int nIntensity = GetRandomIntensity(nDifficulty);
@@ -74,7 +72,7 @@ public class DisturbanceSpawner : MonoBehaviour {
     }
 
     public int GetRandomIntensity(int nDifficulty) {
-        return Random.Range(1, 6);
+        return Random.Range(1, 4) + nDifficulty;
     }
 
     public int GetRandomMeter() {
@@ -82,7 +80,8 @@ public class DisturbanceSpawner : MonoBehaviour {
     }
 
     public float GetRandomTimeToReachCenter(int nDifficulty) {
-        return Configurables.inst.fTimeToReachCenterAverage + Random.Range(-Configurables.inst.fTimeToReachCenterVariance, Configurables.inst.fTimeToReachCenterVariance);
+        float fSpeedupFromDifficulty = nDifficulty * Configurables.inst.fDisturbanceSpeedFromDifficulty;
+        return Configurables.inst.fTimeToReachCenterAverage + Random.Range(-Configurables.inst.fTimeToReachCenterVariance, Configurables.inst.fTimeToReachCenterVariance) - fSpeedupFromDifficulty;
     }
 
     public void SpawnDisturbance (int nDifficulty){
@@ -96,11 +95,12 @@ public class DisturbanceSpawner : MonoBehaviour {
 
         Disturbance disturbance = goNewlySpawned.GetComponent<Disturbance>();
 
-        InitNewDisturbance(disturbance);
+        InitNewDisturbance(disturbance, nDifficulty);
     }
 
     public void SetNewDisturbanceSpawnTime() {
-        fTimeUntilNewSpawn = Configurables.inst.fDisturbanceSpawnRate + Random.Range(-Configurables.inst.fDisturbanceSpawnVariance, Configurables.inst.fDisturbanceSpawnVariance);
+        float fTimeSpeedupFromDifficulty = GameManager.inst.nDifficulty * Configurables.inst.fDisturbanceSpawnRateFromDifficulty;
+        fTimeUntilNewSpawn = Configurables.inst.fDisturbanceSpawnRate + Random.Range(-Configurables.inst.fDisturbanceSpawnVariance, Configurables.inst.fDisturbanceSpawnVariance) - fTimeSpeedupFromDifficulty;
     }
 
     public void SetJerkExpression() {
