@@ -742,7 +742,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3633087899125098012, guid: a96d6d3a83f496e45b65465b94319df5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.94
+      value: 1.02
       objectReference: {fileID: 0}
     - target: {fileID: 3633087899125098012, guid: a96d6d3a83f496e45b65465b94319df5, type: 3}
       propertyPath: m_LocalPosition.y
@@ -789,6 +789,10 @@ PrefabInstance:
       value: -1.247
       objectReference: {fileID: 0}
     - target: {fileID: 6807122234786856369, guid: a96d6d3a83f496e45b65465b94319df5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6807122234786856369, guid: a96d6d3a83f496e45b65465b94319df5, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -0.015
       objectReference: {fileID: 0}
@@ -804,6 +808,14 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 1.25
       objectReference: {fileID: 0}
+    - target: {fileID: 7914534307998313390, guid: a96d6d3a83f496e45b65465b94319df5, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2b4ebdfa40e01be49b08f5b30c8d3b4d, type: 3}
+    - target: {fileID: 7989495747570337911, guid: a96d6d3a83f496e45b65465b94319df5, type: 3}
+      propertyPath: sprBox
+      value: 
+      objectReference: {fileID: 21300000, guid: 2b4ebdfa40e01be49b08f5b30c8d3b4d, type: 3}
     - target: {fileID: 7989495747570337911, guid: a96d6d3a83f496e45b65465b94319df5, type: 3}
       propertyPath: keyAccel
       value: 101
@@ -812,6 +824,10 @@ PrefabInstance:
       propertyPath: keyDeccel
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 7989495747570337911, guid: a96d6d3a83f496e45b65465b94319df5, type: 3}
+      propertyPath: sprGlowingBox
+      value: 
+      objectReference: {fileID: 21300000, guid: 2010cfc3b31d77d4382c58c8c665e409, type: 3}
     - target: {fileID: 8467702297946250069, guid: a96d6d3a83f496e45b65465b94319df5, type: 3}
       propertyPath: m_Name
       value: pfMeter3
@@ -2374,7 +2390,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -262891729
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 69bf3e49857c67449ad3d73161ff2da8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3558,7 +3574,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -262891729
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 0e629a8011228c146ab312c065ccd157, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3797,12 +3813,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: fbe6c7366223eb242b09a6e03312e44c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ea7d8d69480b9bd4597e6725f52420f6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 5.93, y: 6.62}
+  m_Size: {x: 5.67, y: 6.62}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -3990,7 +4006,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3633087899125098012, guid: a96d6d3a83f496e45b65465b94319df5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.075
       objectReference: {fileID: 0}
     - target: {fileID: 3633087899125098012, guid: a96d6d3a83f496e45b65465b94319df5, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4037,6 +4053,10 @@ PrefabInstance:
       value: -1.253
       objectReference: {fileID: 0}
     - target: {fileID: 6807122234786856369, guid: a96d6d3a83f496e45b65465b94319df5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6807122234786856369, guid: a96d6d3a83f496e45b65465b94319df5, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -0.023
       objectReference: {fileID: 0}
@@ -4052,6 +4072,14 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 1.25
       objectReference: {fileID: 0}
+    - target: {fileID: 7914534307998313390, guid: a96d6d3a83f496e45b65465b94319df5, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 53601a7000805f643b3edf4034399fed, type: 3}
+    - target: {fileID: 7989495747570337911, guid: a96d6d3a83f496e45b65465b94319df5, type: 3}
+      propertyPath: sprBox
+      value: 
+      objectReference: {fileID: 21300000, guid: 53601a7000805f643b3edf4034399fed, type: 3}
     - target: {fileID: 7989495747570337911, guid: a96d6d3a83f496e45b65465b94319df5, type: 3}
       propertyPath: keyAccel
       value: 119
@@ -4060,6 +4088,10 @@ PrefabInstance:
       propertyPath: keyDeccel
       value: 115
       objectReference: {fileID: 0}
+    - target: {fileID: 7989495747570337911, guid: a96d6d3a83f496e45b65465b94319df5, type: 3}
+      propertyPath: sprGlowingBox
+      value: 
+      objectReference: {fileID: 21300000, guid: 4df4d79aabd655248b403466ecb0ebdc, type: 3}
     - target: {fileID: 8467702297946250069, guid: a96d6d3a83f496e45b65465b94319df5, type: 3}
       propertyPath: m_Name
       value: pfMeter2
@@ -4099,7 +4131,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3633087899125098012, guid: a96d6d3a83f496e45b65465b94319df5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.97
+      value: -0.9
       objectReference: {fileID: 0}
     - target: {fileID: 3633087899125098012, guid: a96d6d3a83f496e45b65465b94319df5, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4135,6 +4167,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3633087899125098012, guid: a96d6d3a83f496e45b65465b94319df5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6807122234786856369, guid: a96d6d3a83f496e45b65465b94319df5, type: 3}
+      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7726718678264442722, guid: a96d6d3a83f496e45b65465b94319df5, type: 3}

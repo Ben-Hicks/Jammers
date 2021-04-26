@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public void CheckForRestart() {
-        if (Input.GetKeyDown(KeyCode.R)) {
+        if (Input.GetKeyDown(KeyCode.R) && (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))) {
             RestartGame();
         }
     }
