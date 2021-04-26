@@ -59,6 +59,9 @@ public class Meter : MonoBehaviour {
         }
 
         if (bHitExtreme) {
+
+            fCurVelocity = 0f;
+
             if (fTimeInExtreme == 0f || fTimeInExtreme >= Configurables.inst.fComboJerkDelay) {
                 Score.inst.HitExtreme();
                 DisturbanceSpawner.inst.SetJerkExpression();
@@ -89,7 +92,7 @@ public class Meter : MonoBehaviour {
     public void UpdateValFromVelocity() {
         //At the end of each frame, update the position of the value depending on its velocity
 
-        ChangeVal(fCurVelocity);
+        ChangeVal(fCurVelocity * Time.deltaTime);
     }
 
     public void UpdateVelocity() {
@@ -128,6 +131,8 @@ public class Meter : MonoBehaviour {
         }
 
         ChangeVelocity(fImpact);
+
+        fTimeSinceLastInput = 0f;
 
     }
 
