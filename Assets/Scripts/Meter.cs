@@ -20,7 +20,10 @@ public class Meter : MonoBehaviour {
     public const float fRectFillWidth = 0.6f;
     public const float fMaxRectFillSacle = 2.5f;
     public RectTransform rectFill;
-    
+
+    public Image imageBox;
+    public Sprite sprBox;
+    public Sprite sprGlowingBox;
 
     public void SetFullness() {
         //Position the handle in the appropriate range for fCurVal in {-fMaxVal, +fMaxVal}
@@ -121,6 +124,18 @@ public class Meter : MonoBehaviour {
 
     }
 
+
+    public void UpdateBoxSprite() {
+
+        Sprite sprNewBox = sprBox;
+        if (IsSweetspot()) {
+            sprNewBox = sprGlowingBox;
+        }
+
+        if (imageBox.sprite != sprNewBox) imageBox.sprite = sprNewBox;
+    }
+
+
     public bool IsSweetspot() {
         return Mathf.Abs(fPercentageVal - 0.5f) <= Configurables.inst.fSweetspotWidth;
     }
@@ -138,6 +153,8 @@ public class Meter : MonoBehaviour {
         UpdateVelocity();
 
         UpdateValFromVelocity();
+
+        UpdateBoxSprite();
 
     }
 }
